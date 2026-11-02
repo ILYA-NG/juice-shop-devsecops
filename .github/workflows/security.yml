@@ -41,7 +41,7 @@ jobs:
         with:
           sarif_file: 'semgrep.sarif'
 
-  sca:
+    sca:
     name: Dependency Scan (Trivy)
     runs-on: ubuntu-latest
     steps:
@@ -54,13 +54,14 @@ jobs:
           output: 'trivy-fs.sarif'
           severity: 'CRITICAL,HIGH'
           exit-code: '1'
+          limit-severities-for-sarif: true
       - name: Upload Trivy FS SARIF
         uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
           sarif_file: 'trivy-fs.sarif'
 
-  container:
+    container:
     name: Container Scan (Trivy)
     runs-on: ubuntu-latest
     steps:
@@ -75,6 +76,7 @@ jobs:
           output: 'trivy-image.sarif'
           severity: 'CRITICAL,HIGH'
           exit-code: '1'
+          limit-severities-for-sarif: true
       - name: Upload Trivy image SARIF
         uses: github/codeql-action/upload-sarif@v4
         if: always()
