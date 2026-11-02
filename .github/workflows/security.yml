@@ -41,7 +41,7 @@ jobs:
         with:
           sarif_file: 'semgrep.sarif'
 
-    sca:
+  sca:
     name: Dependency Scan (Trivy)
     runs-on: ubuntu-latest
     steps:
@@ -61,7 +61,7 @@ jobs:
         with:
           sarif_file: 'trivy-fs.sarif'
 
-    container:
+  container:
     name: Container Scan (Trivy)
     runs-on: ubuntu-latest
     steps:
